@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 require("dotenv").config()
 const Joi = require("joi")
-const JoiObjectId = require("Joi-Objectid")
+const JoiObjectId = require("joi-objectid")
 Joi.objectid = JoiObjectId(Joi)
 
 
