@@ -261,7 +261,7 @@ router.post("/:gameId/tickets", checkToken, validateId("gameId"), validateBody(t
         light: "#FFF",
       },
     }
-    const qrImage = await QRCode.toDataURL(`https://park-react.herokuapp.com/ticket/${newTicket._id}`, opts)
+    const qrImage = await QRCode.toDataURL(`https://park-react.herokuapp.com/profile/ticket/${newTicket._id}`, opts)
     await Ticket.findByIdAndUpdate(newTicket._id, { $set: { qrcode: qrImage } }) // اضفت الباركود لتكت
 
     const transporter = nodemailer.createTransport({
@@ -282,7 +282,7 @@ router.post("/:gameId/tickets", checkToken, validateId("gameId"), validateBody(t
       subject: "Ticket verification",
 
       html: `Hello, please click on this link to your Ticket.
-        <a href="https://park-react.herokuapp.com/ticket/${newTicket._id}" > View Ticket </a>
+        <a href="https://park-react.herokuapp.com/profile/ticket/${newTicket._id}" > View Ticket </a>
         <img src="${qrImage}"/>`,
     })
     return res.send(qrImage)
